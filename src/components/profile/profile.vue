@@ -16,7 +16,8 @@
 
         <li>город: {{ user.address }}</li>
       </ul>
-      <button v-on:click="getBeer" id="btn" v-if="beer">BEER</button>
+      <Button title="BEER" :getBeer="getBeer" v-if="beer"/>
+      <!-- <button v-on:click="getBeer" id="btn" v-if="beer">BEER</button> -->
     </div>
     <div class="result">
       <div class="content" v-if="beer">
@@ -26,15 +27,17 @@
         <p>Alc/strong: {{ beer.alcohol }}/{{ beer.blg }}</p>
       </div>
       <div class="content" v-else>
-        <button v-on:click="getBeer" id="btn">BEER</button>
+        <!-- <button v-on:click="getBeer" id="btn">BEER</button> -->
+                <Button title="BEER" :getBeer="getBeer" />
+
       </div>
     </div>
   </main>
+  
 </template>
 
 <script>
-// import axios from "axios";
-// import Button from "./button.vue";
+import Button from '../button/button.vue';
 export default {
   name: "Profile",
   data() {
@@ -50,6 +53,9 @@ export default {
       },
       beer: null,
     };
+  },
+  components:{
+    Button
   },
   methods: {
     getBeer() {
@@ -157,24 +163,7 @@ export default {
     font-weight: 900;
   }
   /*  next block*/
-  #btn {
-    /* position: absolute;
-  left: 50%;
-  bottom: 5%; */
-    width: 150px;
-    height: 50px;
-    border-radius: 20px;
-    border: none;
-    background: #f2cb1d;
-    color: white;
-    font-weight: 900;
-    font-size: 30px;
-    transition: 0.1s;
-  }
-  #btn:active {
-    font-size: 28px;
-    transition: 0.1s;
-  }
+
   /*  */
   .result {
     background: #f14f29;
@@ -248,25 +237,7 @@ export default {
     font-weight: 900;
   }
   /*  next block*/
-  #btn {
-    position: absolute;
-    left: 50%;
-    bottom: 5%;
-    transform: translateX(-50%);
-    width: 150px;
-    height: 50px;
-    border-radius: 20px;
-    border: none;
-    background: #f2cb1d;
-    color: white;
-    font-weight: 900;
-    font-size: 30px;
-    transition: 0.1s;
-  }
-  #btn:active {
-    font-size: 28px;
-    transition: 0.1s;
-  }
+  
   /*  */
   .result {
     background: #f14f29;
