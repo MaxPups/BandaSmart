@@ -8,16 +8,15 @@
         <div class="loader"></div>
       </div>
       <ul class="list">
-        <li id="name">{{ user.name }} {{ user.astName }}</li>
+        <li id="name">{{ user.first_name }} {{ user.last_name }}</li>
 
-        <li>телефон: {{ user.phone }}</li>
+        <li>телефон: {{ user.phone_number }}</li>
 
         <li>почта: {{ user.email }}</li>
 
-        <li>город: {{ user.address }}</li>
+        <li>город: {{ user.address.city }}</li>
       </ul>
-      <Button title="BEER" :getBeer="getBeer" v-if="beer"/>
-      <!-- <button v-on:click="getBeer" id="btn" v-if="beer">BEER</button> -->
+      <Button title="BEER" :getBeer="getBeer" v-if="beer" />
     </div>
     <div class="result">
       <div class="content" v-if="beer">
@@ -27,35 +26,24 @@
         <p>Alc/strong: {{ beer.alcohol }}/{{ beer.blg }}</p>
       </div>
       <div class="content" v-else>
-        <!-- <button v-on:click="getBeer" id="btn">BEER</button> -->
-                <Button title="BEER" :getBeer="getBeer" />
-
+        <Button title="BEER" :getBeer="getBeer" />
       </div>
     </div>
   </main>
-  
 </template>
 
 <script>
-import Button from '../button/button.vue';
+import Button from "../button/button.vue";
 export default {
   name: "Profile",
   data() {
     return {
-      user: {
-        username: null,
-        name: null,
-        lastName: null,
-        email: null,
-        address: null,
-        phone: null,
-        avatar: null,
-      },
+      user: null,
       beer: null,
     };
   },
-  components:{
-    Button
+  components: {
+    Button,
   },
   methods: {
     getBeer() {
@@ -72,22 +60,8 @@ export default {
     fetch("https://random-data-api.com/api/users/random_user")
       .then((i) => i.json())
       .then((i) => {
-        this.user.username = i.username;
-        this.user.name = i.first_name;
-        this.user.lastName = i.last_name;
-        this.user.avatar = i.avatar;
-        this.user.email = i.email;
-        this.user.address = i.address.state;
-        this.user.phone = i.phone_number;
+        this.user = i;
       });
-    // https://random-data-api.com/api/beer/random_beer
-    //  fetch('https://random-data-api.com/api/beer/random_beer')
-    // .then(i=>i.json())
-    // .then(i=>{
-    //   console.log(i);
-    //   this.beer = i;
-    // })
-    // i.brand i.name i.style i.alcohol i.blg(крепость)
   },
 };
 </script>
@@ -112,8 +86,8 @@ export default {
     justify-content: space-around;
   }
   .avatar {
-    width: 250px;
-    height: 250px;
+    width: 350px;
+    height: 350px;
     border-radius: 50%;
     /* border: 1px solid red; */
     overflow: hidden;
@@ -237,7 +211,7 @@ export default {
     font-weight: 900;
   }
   /*  next block*/
-  
+
   /*  */
   .result {
     background: #f14f29;
