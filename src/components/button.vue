@@ -1,23 +1,20 @@
 <template>
   <div>
-    <button id="btn" v-on:click="getBeer">{{ title }}</button>
+    <button class="btn" v-on:click="getBeer">{{ title }}</button>
   </div>
 </template>
 <script>
-// import axios from "axios";
 export default {
   name: "Button",
-  data() {
-    return {};
-  },
-  props: ["title", "getBeer"],
-  methods: {},
+  props: ["title", 'getBeer']
+
 };
 </script>
 
 <style scoped>
-@media (min-width: 576px) {
-  #btn {
+@media (min-width: 768px) {
+  .btn {
+    margin-top: 50px;
     width: 150px;
     height: 50px;
     border-radius: 20px;
@@ -28,17 +25,14 @@ export default {
     font-size: 30px;
     transition: 0.1s;
   }
-  #btn:active {
+  .btn:active {
     font-size: 28px;
     transition: 0.1s;
   }
 }
-@media (max-width: 576px) {
-  #btn {
-    position: absolute;
-    left: 50%;
-    bottom: 5%;
-    transform: translateX(-50%);
+@media (max-width: 768px) {
+   .btn {
+    margin-top: 50px;
     width: 150px;
     height: 50px;
     border-radius: 20px;
@@ -49,7 +43,7 @@ export default {
     font-size: 30px;
     transition: 0.1s;
   }
-  #btn:active {
+  .btn:active {
     font-size: 28px;
     transition: 0.1s;
   }

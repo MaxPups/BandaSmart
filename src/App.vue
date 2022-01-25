@@ -1,20 +1,44 @@
 <template>
   <div id="app">
-    <Profile title="Max" />
-    <!-- <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" /> -->
+    <main class="block">
+      <Profile :data="user" />
+      <Beer :beer="beer" :getBeer="getBeer"/>
+    </main>
   </div>
 </template>
 
 <script>
-// import HelloWorld from "./components/HelloWorld.vue";
-import Profile from "./components/profile/profile.vue";
-
+import Profile from "./components/profile.vue";
+import Beer from './components/beer.vue';
 export default {
   name: "App",
   components: {
-    // HelloWorld,
     Profile,
+    Beer
+  },
+  data() {
+    return {
+      user: null,
+      beer: null,
+    };
+  },
+  methods: {
+    getBeer() {
+      fetch("https://random-data-api.com/api/beer/random_beer")
+        .then((i) => i.json())
+        .then((data) => {
+          console.log(data);
+          this.beer = data;
+        });
+    },
+  },
+  mounted() {
+    fetch("https://random-data-api.com/api/users/random_user")
+      .then((i) => i.json())
+      .then((data) => {
+        console.log(data);
+        this.user = data;
+      });
   },
 };
 </script>
@@ -25,12 +49,21 @@ export default {
   padding: 0%;
   box-sizing: border-box;
 }
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  /* margin-top: 60px; */
+@media (min-width: 768px){
+main {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  height: 100vh;
+  background: blue;
+}
+}
+@media (max-width: 768px){
+
+main {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+  height: 100vh;
+}
 }
 </style>
