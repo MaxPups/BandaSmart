@@ -8,6 +8,18 @@
     justify-content: space-around;
     text-align: left;
     line-height: 10px;
+    transform: translateX(-50%);
+    border: 5px dashed black;
+    animation: loading 0.5s linear;
+}
+
+@keyframes loading {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 * {
@@ -27,3 +39,7 @@
     border-radius: 10%;
     transition: 0.1s;
 }
+
+@media(min-width: 576px) {}
+
+@media(max-width: 576px) {}
